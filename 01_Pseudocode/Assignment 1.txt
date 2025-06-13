@@ -1,0 +1,28 @@
+Create pseudocode for a number guessing game
+--------------------------------------------
+
+variable: randNum = none
+variable: userGuess = none
+variable: numOfGuesses = 7
+variable: replay = Y
+
+*Set up random generator
+randNum = random number between 1 and 100 *look at inclusive/exclusive ends
+1. Do
+	Do
+		1. Print out: "Guess a number 1 to 100: "
+		2. While userGuess is NONE, EMPTY, or NOT A NUMBER, keep asking
+			Once valid, store user input into userGuess and add 1 to numOfGuesses
+			1. If userGuess = randNum: Print out: "Congratulations, the number was (randNum)!"
+			2. Else If userGuess > randNum:
+				numOfGuesses -= 1
+				Print out: "Too high, (numOfGuesses) guesses left!"
+			3. Else If userGuess < randNum:
+				numOfGuesses -= 1
+				Print out: "Too low, (numOfGuesses) guesses left!"
+	While userGuess is NOT EQUAL to randNum
+	1. Print out: "Would you like to play again? y/n: "
+	2. If input is NOT 'y' OR 'n': Print out: "Invalid, please try again"
+	3. Else: replay = input
+While replay is NOT n
+2. Print out: "Goodbye" 
