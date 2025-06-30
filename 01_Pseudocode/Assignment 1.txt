@@ -1,28 +1,35 @@
 Create pseudocode for a number guessing game
 --------------------------------------------
+WHILE user wants to play DO
+    SET secret_number TO a random number between 1 and 100
+    SET max_attempts TO 7
+    SET attempts TO 0
+    SET has_won TO false
 
-variable: randNum = none
-variable: userGuess = none
-variable: numOfGuesses = 7
-variable: replay = Y
+    PRINT "Guess the number between 1 and 100. You have 7 attempts."
 
-*Set up random generator
-randNum = random number between 1 and 100 *look at inclusive/exclusive ends
-1. Do
-	Do
-		1. Print out: "Guess a number 1 to 100: "
-		2. While userGuess is NONE, EMPTY, or NOT A NUMBER, keep asking
-			Once valid, store user input into userGuess and add 1 to numOfGuesses
-			1. If userGuess = randNum: Print out: "Congratulations, the number was (randNum)!"
-			2. Else If userGuess > randNum:
-				numOfGuesses -= 1
-				Print out: "Too high, (numOfGuesses) guesses left!"
-			3. Else If userGuess < randNum:
-				numOfGuesses -= 1
-				Print out: "Too low, (numOfGuesses) guesses left!"
-	While userGuess is NOT EQUAL to randNum
-	1. Print out: "Would you like to play again? y/n: "
-	2. If input is NOT 'y' OR 'n': Print out: "Invalid, please try again"
-	3. Else: replay = input
-While replay is NOT n
-2. Print out: "Goodbye" 
+    WHILE attempts < max_attempts DO
+        PROMPT user to enter a guess
+        INCREMENT attempts by 1
+
+        IF guess equals secret_number THEN
+            PRINT "Congratulations! You guessed the number in [attempts] attempts."
+            SET has_won TO true
+            BREAK out of the loop
+        ELSE IF guess < secret_number THEN
+            PRINT "Too low. Try again."
+        ELSE
+            PRINT "Too high. Try again."
+
+    END WHILE
+
+    IF has_won is false THEN
+        PRINT "Sorry, you lost. The correct number was [secret_number]."
+
+    PROMPT user "Do you want to play again? (yes/no)"
+    IF user input is not "yes" THEN
+        EXIT the main game loop
+
+END WHILE
+
+PRINT "Thanks for playing!"
