@@ -1,0 +1,118 @@
+# Whispers of the Wild - Extended Text Adventure
+# Author: Anthony
+# Description: A deeper adventure where you gain the power to speak to animals. You build relationships, make choices, and shape the future of the forest.
+
+# Track trust levels with key animals
+trust = {
+    "raven": 0,
+    "fox": 0,
+    "bear": 0,
+    "owl": 0
+}
+
+def intro():
+    print("🌲 Whispers of the Wild 🌲")
+    print("You wake in the forest, confused and groggy. A whisper passes through the leaves.")
+    print("You realize you can understand the birds, the rustle of creatures in the brush.")
+    print("You've been gifted the ability to speak with animals.\n")
+    print("The forest is in danger—developers want to clear it for a new highway.")
+    print("The animals are wary of you. You must earn their trust.\n")
+
+def meet_raven():
+    print("\nYou spot a sleek black raven watching you.")
+    print("'So, human… you hear us now? Prove it. Solve my riddle.'")
+    print("Riddle: I have lots to say but never speak, I open but you cannot walk through me, I have a spine but no bones. What am I?")
+    answer = input("Your answer: ").strip().lower()
+    if "book" in answer:
+        trust["raven"] += 1
+        print("'Hmm. Not bad. I’ll be watching you.' (Raven trusts you more)")
+    else:
+        print("'Wrong. But amusing. We’ll see what you’re worth.'")
+
+def meet_fox():
+    print("\nA sly fox appears, tail swaying.")
+    print("'You’ll need allies if you want to help this place. Will you join me on a quick errand?'")
+    print("1. Go with the fox to steal berries from a hunter’s pack.")
+    print("2. Refuse and stay in the clearing.")
+    choice = input("Choose (1 or 2): ")
+    if choice == "1":
+        trust["fox"] += 1
+        print("You help the fox distract the hunter and grab the berries.")
+        print("'Not bad, human. You’ve got claws beneath that skin.' (Fox trusts you more)")
+    else:
+        print("The fox shrugs. 'Suit yourself. Maybe you're not ready to run with us.'")
+
+def meet_bear():
+    print("\nYou hear heavy footsteps. A large bear appears from the shadows.")
+    print("'Do not fear. I protect this forest, but I judge humans carefully.'")
+    print("He challenges you to gather herbs for a sick deer.")
+    print("Do you:")
+    print("1. Carefully forage with the owl’s guidance.")
+    print("2. Improvise and grab the first plants you find.")
+    choice = input("Choose (1 or 2): ")
+    if choice == "1":
+        trust["bear"] += 1
+        print("The deer recovers slowly. The bear nods. 'You care. That matters.' (Bear trusts you more)")
+    else:
+        print("The deer worsens. The bear growls softly. 'Good intentions are not enough.'")
+
+def meet_owl():
+    print("\nAt dusk, a great owl lands silently beside you.")
+    print("'Wisdom is earned. Answer truthfully.'")
+    print("'Would you trade part of the forest to save the rest?'")
+    print("1. Yes, compromise is necessary.")
+    print("2. No, the whole forest must survive.")
+    choice = input("Choose (1 or 2): ")
+    if choice == "1":
+        trust["owl"] += 1
+        print("The owl blinks slowly. 'Pragmatic. You see more than trees.' (Owl trusts you more)")
+    else:
+        print("The owl tilts her head. 'Stubborn… but admirable. Time will test that.'")
+
+def trust_score():
+    return sum(trust.values())
+
+def final_decision():
+    print("\nThe council of animals gathers. You stand before them.")
+    print("They await your proposal for the future of the forest.")
+    print("1. Propose total protection: No humans allowed.")
+    print("2. Suggest shared space: Trails and parks, no roads.")
+    print("3. Accept development: Compensation and relocation for animals.")
+    choice = input("Choose (1, 2, or 3): ")
+    total_trust = trust_score()
+
+    if choice == "1":
+        if total_trust >= 3:
+            print("\n🌿Ending: Guardian of the Wild")
+            print("Your passion inspires the animals. Together, you pressure the humans and gain legal protection for the forest.")
+        else:
+            print("\n🌫️ Ending: Divided and Forgotten")
+            print("The animals do not unite. Developers win. The forest is fragmented.")
+    elif choice == "2":
+        if trust["owl"] > 0 and trust["fox"] > 0:
+            print("\n🌱 Ending: The Living Treaty")
+            print("You broker a balance. The forest remains intact, with guided paths and peaceful coexistence.")
+        else:
+            print("\n🏞️ Ending: Compromise in Chaos")
+            print("Without full support, the plan is messy. Some peace, some loss.")
+    elif choice == "3":
+        if trust["raven"] <= 0 and trust["bear"] <= 0:
+            print("\n🏙️ Ending: Silent Woods")
+            print("You sell the forest. Riches follow. But you lose the trust of the creatures forever.")
+        else:
+            print("\n❓ Ending: A Strange Kindness")
+            print("Some animals trust you despite your choice. You relocate them safely. It’s not ideal, but better than nothing.")
+    else:
+        print("The animals grow restless. You failed to lead them.")
+        print("🌌 Ending: Voice Lost in the Leaves")
+
+def main():
+    intro()
+    meet_raven()
+    meet_fox()
+    meet_bear()
+    meet_owl()
+    final_decision()
+
+if __name__ == "__main__":
+    main()
