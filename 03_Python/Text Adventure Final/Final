@@ -15,7 +15,7 @@ def intro():
     print("You wake in the forest, confused and groggy. A whisper passes through the leaves.")
     print("You realize you can understand the birds, the rustle of creatures in the brush.")
     print("You've been gifted the ability to speak with animals.\n")
-    print("The forest is in danger—developers want to clear it for a new highway.")
+    print("The forest is in danger: Developers want to clear it for a new highway.")
     print("The animals are wary of you. You must earn their trust.\n")
 
 def meet_raven():
